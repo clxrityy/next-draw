@@ -1,0 +1,10 @@
+.canvas_big {
+    width: 850px;
+    height: 100vh;
+    border: 2px solid #fff;
+}
+
+.canvas_small {
+    width: 600px;
+    height: 100vh;
+}
