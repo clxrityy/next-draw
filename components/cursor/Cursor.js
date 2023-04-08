@@ -1,5 +1,5 @@
 import styles from './Cursor.module.css';
-import useMousePosition from '@/hooks/useMousePosition';
+import useMousePosition from '@/util/useMousePosition';
 import { useSelector } from 'react-redux';
 
 const Cursor = () => {

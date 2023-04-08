@@ -4,7 +4,7 @@ import { createStore } from 'redux';
 import { rootReducer } from "./reducers";
 import { Provider } from "react-redux";
 import NoSSR from "./components/NoSSR";
-import Cursor from '@/components/cursor/Cursor';
+
 
 const store = createStore(rootReducer);
 
@@ -19,7 +19,6 @@ const Playground = () => {
                     </title>
                 </Head>
                 <div className="h-screen w-full">
-                    <Cursor />
                     <div className="flex">
                         <Settings />
                     </div>

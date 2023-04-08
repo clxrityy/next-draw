@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Stage, Layer, Line } from 'react-konva';
 import styles from './Canvas.module.css';
-import { useSelector, ReactReduxContext, Provider } from 'react-redux';
-import { connect } from "react-redux";
+import { useSelector } from 'react-redux';
+import Cursor from '@/components/cursor/Cursor';
 
 
 const Canvas = ({ onClearLines, clearLines }) => {
@@ -18,8 +18,6 @@ const Canvas = ({ onClearLines, clearLines }) => {
 
 
     useEffect(() => {
-        //
-
 
     }, [clearLines]);
 
@@ -57,35 +55,42 @@ const Canvas = ({ onClearLines, clearLines }) => {
 
 
     return (
-        <div className='text-center flex justify-center items-center'>
-            <Stage
-                width={window.innerWidth > 767 ? 850 : 600}
-                height={window.innerHeight}
-                onMouseDown={handleMouseDown}
-                onMouseMove={handleMouseMove}
-                onMouseUp={handleMouseUp}
-                className={window.innerWidth > 767 ? styles.canvas_big : styles.canvas_small}
-
+        <div
+            className='text-center flex justify-center items-center'
+        >
+            <div
+                style={{
+                    width: window.innerWidth >= 767 ? 1000 : 400
+                }}
             >
+                <Cursor />
+                <Stage
+                    width={window.innerWidth >= 767 ? 1000 : 400}
+                    height={window.innerHeight}
+                    onMouseDown={handleMouseDown}
+                    onMouseMove={handleMouseMove}
+                    onMouseUp={handleMouseUp}
+                    className={styles.canvas_big}
 
-                <Layer>
-                    {lines.map((line, i) => (
-                        <Line
-                            key={i}
-                            points={line.points}
-                            stroke={colorSelector != '' ? colorSelector : '#fff'}
-                            strokeWidth={2}
-                            tension={0.5}
-                            lineCap='round'
-                            globalCompositeOperation={
-                                toolSelector === 'ERASER' ? 'destination-out' : 'source-over'}
+                >
+                    <Layer>
+                        {lines.map((line, i) => (
+                            <Line
+                                key={i}
+                                points={line.points}
+                                stroke={colorSelector != '' ? colorSelector : '#fff'}
+                                strokeWidth={2}
+                                tension={0.5}
+                                lineCap='round'
+                                globalCompositeOperation={
+                                    toolSelector === 'ERASER' ? 'destination-out' : 'source-over'}
 
-                        />
-                    ))}
-                </Layer>
+                            />
+                        ))}
+                    </Layer>
 
-            </Stage>
-
+                </Stage>
+            </div>
         </div>
     );
 }
